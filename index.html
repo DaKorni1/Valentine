@@ -95,32 +95,30 @@
     const noBtn = document.getElementById("noBtn");
   const yesBtn = document.getElementById("yesBtn");
   const content = document.getElementById("content");
-  const buttonsBox = document.querySelector(".buttons");
+  const box = document.querySelector(".buttons");
 
-    // No Button springt weg
-    noBtn.addEventListener("click", moveButton);
+  noBtn.addEventListener("touchstart", moveButton);
+  noBtn.addEventListener("click", moveButton);
 
-   function moveButton() {
-    const boxRect = buttonsBox.getBoundingClientRect();
-    const btnRect = noBtn.getBoundingClientRect();
+  function moveButton(e) {
+    e.preventDefault();
 
-    const maxX = boxRect.width - btnRect.width;
-    const maxY = boxRect.height - btnRect.height;
+    const maxX = box.clientWidth - noBtn.offsetWidth;
+    const maxY = box.clientHeight - noBtn.offsetHeight;
 
     const x = Math.random() * maxX;
     const y = Math.random() * maxY;
 
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
-    }
+  }
 
-    // Yes Button
-    yesBtn.addEventListener("click", () => {
-      content.innerHTML = `
-        <h1>Yaaay 💕</h1>
-        <h1>I looove youuu ❤️</h1>
-      `;
-    });
+  yesBtn.addEventListener("click", () => {
+    content.innerHTML = `
+      <h1>Yaaay 💕</h1>
+      <h1>I looove youuu ❤️</h1>
+    `;
+  });
 
     // Herzen erzeugen
     function createHeart() {
@@ -141,5 +139,6 @@
 
 </body>
 </html>
+
 
 
